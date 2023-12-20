@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
+import { AlertsService } from 'src/services/alerts.service';
 import { LoadingService } from 'src/services/loading.service';
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -8,19 +8,15 @@ import { LoadingService } from 'src/services/loading.service';
 })
 export class AppComponent {
   title = 'e-voting-cms';
-  isLoading: boolean = true; // Set to true initially, replace with your actual loading logic
+  isLoading: boolean = false; 
   constructor(
-    private loadingServices: LoadingService
+    private loadingServices: LoadingService,
+    private alertService: AlertsService
   ) {
 
   }
-  // Example: Simulate loading completion after 3 seconds
   ngOnInit() {
-    this.loadingServices.getLoadingScreen()?.subscribe((response => {
-      this.isLoading = response
-    }))
-    // setTimeout(() => {
-    //   this.isLoading = false;
-    // }, 3000);
+    this.alertService.showAlert('Welcome', 'Hi voters', 'success')
   }
+
 }
